@@ -46,9 +46,9 @@ Link to the dataset : [FitBit Fitness Tracker Data](https://www.kaggle.com/datas
 
 1. **Completeness**
 
-Steps data: 33 unique users (100%)
-Sleep data: 24 unique users (73%)
-Weight data: 8 unique users (24%)
+* Steps data: 33 unique users (100%)
+* Sleep data: 24 unique users (73%)
+* Weight data: 8 unique users (24%)
 
 2. **Integrity**
 
@@ -63,10 +63,10 @@ Weight data: 8 unique users (24%)
 
 User daily activity level will be categorized into 4 groups as per the [10,000-step](https://www.10000steps.org.au/articles/counting-steps/#:~:text=Low%20active%20is%205%2C000%20to,active%20is%20more%20than%2012%2C500) standard. The daily steps of each user each day will intepreting their activity level. 
 The categories are as follow:
-**Sedentary** - Less than 5000 steps per day
-**Lightly active** - Between 5000 and 7499 steps per day
-**Fairly active** - Between 7500 and 9999 steps per day
-**Very active** - More than 10000 steps per day
+1. **Sedentary** - Less than 5000 steps per day
+2. **Lightly active** - Between 5000 and 7499 steps per day
+3. **Fairly active** - Between 7500 and 9999 steps per day
+4. **Very active** - More than 10000 steps per day
 
 <details><summary><b>Show Code</b></summary>
 
@@ -92,3 +92,33 @@ ggplot(trimmed_activity, aes(x = total_steps, fill = activity_level)) +
 Majority of user are in either the Fairly Active to Very active category. This findings could help see the potential target consumer.
 
 ### Sleep
+
+The dataset record the sleep activity of the users for all times of the day for a month.
+
+<details><summary><b>Show Code</b></summary>
+
+```R
+ggplot(cleaned_daily_sleep, aes(x = total_minutes_asleep / 60)) +
+	geom_density(alpha = .5, fill = "#0099CC", color = "#0099CC") +
+	geom_vline(
+	aes(xintercept = Median.Sleep),
+		color = "red",
+		size = 0.5) +
+	theme_bw() +
+	annotate(x = 9.2, y =+Inf, label = paste0 ("Median Sleep: ", round(Median.Sleep, 2), " hours"), vjust = 1.5, geom = "label")+
+	scale_y_continuous(expand = c(0, 0)) +
+	theme(panel.border = element_blank(), panel.grid.minor.y = element_blank()) +
+	labs(x = "User Hours of Sleep", y = "Sleep Frequency", fill = NULL)
+```
+</details>
+
+<p align="center">
+  <img src="./img/sleep_chart.png" alt="Sleep Chart">
+</p>
+
+The median of the normal distribution of sleep time indicates a normal sleep. Need to classifying users’ sleep habits for further examine correlations between activity and sleep quality.
+
+### Weight
+
+
+

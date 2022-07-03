@@ -120,5 +120,36 @@ The median of the normal distribution of sleep time indicates a normal sleep. Ne
 
 ### Weight
 
+From 33 users, only 8 users have reported their weights during data collection. These users can record the weight by manual, and automatic or smart reports.
+
+<details><summary><b>Show Code</b></summary>
+
+```R
+ggplot(weight_recording_type, aes(x = "", y = count, fill=is_manual_report)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(count/.33,0), '%')), color = c("#36454F", "#36454F", "#36454F"),
+            position = position_stack(vjust = 0.5), size = 5,
+            show.legend = FALSE) +
+  guides(fill = guide_legend(title = "Weight Recording Type")) +
+  scale_fill_brewer(palette = "OrRd") +
+  coord_polar(theta = "y") +
+  theme_void()+
+  labs(title = "Percentage of Users Weight Data",
+       subtitle = "Most of users didn't record weight. The data categorized by weight recording type.")
+```
+</details>
+
+<p align="center">
+  <img src="./img/weight_chart.png" alt="Weight Chart">
+</p>
+
+Observation result the majority users do not record their weights or BMI. The minority of users with smart scales or devices that has feature to automatically record weight can be used as opportunity.
+
+## Recommendation
+
+* From activity analysis, we can give recognition for the consistent active users and lead them to `upgrade app subscriptions`. Give them benefits of premium users will `increase their wellness`.
+* From sleep analysis, we found that 73% of users are using the sleep feature (comfort when sleeping, battery life/ charging). We can give rewards for users who consistent sleep within normal sleep hours.
+* From weight analysis, we found that user does not use the weight tracker feature. We need to use this as new feature that can record users weight more user-friendly or using smart scale method(need further information).
+
 
 
